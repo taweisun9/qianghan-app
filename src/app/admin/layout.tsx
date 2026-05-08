@@ -1,9 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { TrendingUp, Users, FileSpreadsheet, Briefcase, Calendar, FolderOpen, UserCheck, DollarSign, Truck, Menu, X, LogOut } from 'lucide-react';
+
+// ⚠️ 改密碼就改這裡
+const ADMIN_PASSWORD = 'qianghan2026';
 
 const NAV_GROUPS = [
   {
@@ -29,11 +32,101 @@ const NAV_GROUPS = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [authed, setAuthed] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
   const pathname = usePathname();
 
+  // 檢查是否已登入
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = sessionStorage.getItem('qianghan_admin_auth');
+      if (saved === 'yes') setAuthed(true);
+    }
+    setLoading(false);
+  }, []);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      sessionStorage.setItem('qianghan_admin_auth', 'yes');
+      setAuthed(true);
+      setError(false);
+    } else {
+      setError(true);
+      setPassword('');
+    }
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('qianghan_admin_auth');
+    setAuthed(false);
+    setPassword('');
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-stone-100">
+        <div className="text-stone-500">載入中...</div>
+      </div>
+    );
+  }
+
+  // === 未登入:顯示密碼輸入畫面 ===
+  if (!authed) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-800 via-red-700 to-red-900 p-4">
+        <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl">
+          <div className="text-center mb-6">
+            <div className="w-16 h-16 bg-red-700 rounded-2xl mx-auto mb-3 flex items-center justify-center text-white font-black text-3xl">
+              悍
+            </div>
+            <h1 className="text-2xl font-black mb-1">強悍後台</h1>
+            <p className="text-sm text-stone-500">管理系統登入</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-sm font-bold mb-2">管理員密碼</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError(false);
+                }}
+                placeholder="請輸入密碼"
+                className={`w-full px-4 py-3 border-2 rounded-lg outline-none text-lg ${
+                  error ? 'border-red-500 bg-red-50' : 'border-stone-300 focus:border-red-700'
+                }`}
+                autoFocus
+              />
+              {error && (
+                <p className="text-red-600 text-sm mt-2">❌ 密碼錯誤,請再試一次</p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-red-700 text-white py-3 rounded-lg font-black text-lg hover:bg-red-800 transition"
+            >
+              🔓 登入
+            </button>
+          </form>
+
+          <div className="mt-6 pt-6 border-t border-stone-100 text-center text-xs text-stone-400">
+            <p>強悍割草班 © 2026</p>
+            <p className="mt-1">忘記密碼請聯絡系統管理員</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // === 已登入:顯示後台 ===
   return (
     <div className="min-h-screen bg-stone-100 flex">
-      {/* Sidebar */}
       <aside
         className={`${
           mobileMenu ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
@@ -84,13 +177,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <div className="text-xs opacity-60">負責人</div>
             </div>
           </div>
-          <Link href="/" className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-stone-800 rounded">
-            <LogOut size={16} /> 回前台
+          <button onClick={handleLogout} className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-stone-800 rounded text-red-300">
+            <LogOut size={16} /> 登出
+          </button>
+          <Link href="/" className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-stone-800 rounded mt-1">
+            🌐 回前台
           </Link>
         </div>
       </aside>
 
-      {/* Mobile overlay */}
       {mobileMenu && (
         <div
           className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-30"
@@ -98,7 +193,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         />
       )}
 
-      {/* Main */}
       <main className="flex-1 p-4 md:p-8 max-w-full overflow-x-hidden">
         <div className="md:hidden mb-4">
           <button onClick={() => setMobileMenu(true)} className="bg-stone-900 text-white p-2 rounded">
