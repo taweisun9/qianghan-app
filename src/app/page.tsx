@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, CheckCircle2, Sprout, Truck, Trees, Briefcase, MapPin, Send } from 'lucide-react';
+import { Phone, CheckCircle2, MapPin, Send } from 'lucide-react';
 import { createBooking } from '@/lib/supabase';
 
 const AREAS = ['台東市', '卑南鄉', '太麻里鄉', '東河鄉', '成功鎮', '關山鎮', '池上鄉', '鹿野鄉'];
@@ -52,27 +52,19 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section
-        className="relative text-white overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero..jpg')" }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-red-900/85 via-red-800/80 to-red-900/85" />
-
-        <div className="max-w-6xl mx-auto px-6 py-20 md:py-32 relative">
-          <div className="text-xs tracking-[0.4em] mb-6 opacity-80">EST. TAITUNG TAIWAN</div>
-          <h1 className="text-5xl md:text-8xl font-black leading-none mb-6 tracking-tight drop-shadow-2xl">
+      <section className="bg-gradient-to-br from-red-800 via-red-700 to-red-900 text-white">
+        <div className="max-w-6xl mx-auto px-6 py-20 md:py-32">
+          <div className="text-xs tracking-widest mb-6 opacity-80">EST. TAITUNG TAIWAN</div>
+          <h1 className="text-5xl md:text-8xl font-black leading-none mb-6 tracking-tight">
             再硬的草<br/>
             <span className="text-yellow-300">交給強悍</span>
           </h1>
-          <p className="text-lg md:text-xl mb-8 opacity-95 max-w-2xl drop-shadow-lg">台東在地 8 人專業團隊。割草・整地・鋸樹・工程承攬。</p>
+          <p className="text-lg md:text-xl mb-8 opacity-95 max-w-2xl">台東在地 8 人專業團隊。割草・整地・鋸樹・工程承攬。</p>
           <div className="flex gap-3 flex-wrap">
-            <a href="tel:0906505690" className="bg-yellow-300 text-stone-900 px-6 md:px-8 py-4 rounded font-black text-base md:text-lg hover:bg-yellow-200 shadow-2xl">
+            <a href="tel:0906505690" className="bg-yellow-300 text-stone-900 px-6 md:px-8 py-4 rounded font-black text-base md:text-lg hover:bg-yellow-200">
               📞 立即來電 0906-505690
             </a>
-            <button
-              onClick={() => setShowBooking(true)}
-              className="border-2 border-white px-6 md:px-8 py-4 rounded font-black text-base md:text-lg hover:bg-white hover:text-red-700"
-            >
+            <button onClick={() => setShowBooking(true)} className="border-2 border-white px-6 md:px-8 py-4 rounded font-black text-base md:text-lg hover:bg-white hover:text-red-700">
               💬 線上預約 →
             </button>
           </div>
@@ -86,97 +78,29 @@ export default function HomePage() {
 
       <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
         <div className="text-center mb-12">
-          <div className="text-xs tracking-[0.4em] text-red-700 mb-3 font-bold">SERVICES</div>
+          <div className="text-xs tracking-widest text-red-700 mb-3 font-bold">SERVICES</div>
           <h2 className="text-3xl md:text-4xl font-black">服務項目</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div
-              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
-              style={{ backgroundImage: "url('/service-grass..jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <Sprout size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
-            </div>
-            <div className="p-4 md:p-5">
-              <div className="font-black text-lg md:text-xl mb-1">割草清理</div>
-              <div className="text-xs md:text-sm text-stone-600">住家、農地、果園、空地一律承接</div>
-            </div>
+          <div className="border-2 border-stone-900 p-6 hover:bg-stone-900 hover:text-white transition cursor-pointer">
+            <div className="text-3xl mb-3">🌿</div>
+            <div className="font-black text-lg mb-2">割草清理</div>
+            <div className="text-xs text-stone-600">住家、農地、果園、空地一律承接</div>
           </div>
-
-          <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div
-              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
-              style={{ backgroundImage: "url('/service-land.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <Truck size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
-            </div>
-            <div className="p-4 md:p-5">
-              <div className="font-black text-lg md:text-xl mb-1">土地整地</div>
-              <div className="text-xs md:text-sm text-stone-600">雜物清除、地面平整、土地復原</div>
-            </div>
+          <div className="border-2 border-stone-900 p-6 hover:bg-stone-900 hover:text-white transition cursor-pointer">
+            <div className="text-3xl mb-3">🚜</div>
+            <div className="font-black text-lg mb-2">土地整地</div>
+            <div className="text-xs text-stone-600">雜物清除、地面平整、土地復原</div>
           </div>
-
-          <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div
-              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
-              style={{ backgroundImage: "url('/service-tree.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <Trees size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
-            </div>
-            <div className="p-4 md:p-5">
-              <div className="font-black text-lg md:text-xl mb-1">樹木鋸除</div>
-              <div className="text-xs md:text-sm text-stone-600">修枝、伐木、危木處理</div>
-            </div>
+          <div className="border-2 border-stone-900 p-6 hover:bg-stone-900 hover:text-white transition cursor-pointer">
+            <div className="text-3xl mb-3">🌳</div>
+            <div className="font-black text-lg mb-2">樹木鋸除</div>
+            <div className="text-xs text-stone-600">修枝、伐木、危木處理</div>
           </div>
-
-          <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div
-              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
-              style={{ backgroundImage: "url('/service-work.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <Briefcase size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
-            </div>
-            <div className="p-4 md:p-5">
-              <div className="font-black text-lg md:text-xl mb-1">工程承攬</div>
-              <div className="text-xs md:text-sm text-stone-600">工地、農場、廠商人力配合</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-stone-100 py-16 md:py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="text-xs tracking-[0.4em] text-red-700 mb-3 font-bold">OUR TEAM</div>
-            <h2 className="text-3xl md:text-4xl font-black">我們的團隊</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div
-              className="relative h-72 md:h-96 overflow-hidden rounded-xl bg-cover bg-center"
-              style={{ backgroundImage: "url('/team.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <div className="text-xs tracking-widest opacity-80 mb-2">8 PERSON CREW</div>
-                <div className="font-black text-2xl md:text-3xl mb-1">強悍 8 人團隊</div>
-                <div className="text-sm opacity-90">在地經驗豐富,使命必達</div>
-              </div>
-            </div>
-            <div
-              className="relative h-72 md:h-96 overflow-hidden rounded-xl bg-cover bg-center"
-              style={{ backgroundImage: "url('/tools.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <div className="text-xs tracking-widest opacity-80 mb-2">PROFESSIONAL EQUIPMENT</div>
-                <div className="font-black text-2xl md:text-3xl mb-1">專業設備</div>
-                <div className="text-sm opacity-90">背負式割草機、鏈鋸、卡車</div>
-              </div>
-            </div>
+          <div className="border-2 border-stone-900 p-6 hover:bg-stone-900 hover:text-white transition cursor-pointer">
+            <div className="text-3xl mb-3">💼</div>
+            <div className="font-black text-lg mb-2">工程承攬</div>
+            <div className="text-xs text-stone-600">工地、農場、廠商人力配合</div>
           </div>
         </div>
       </section>
@@ -184,7 +108,7 @@ export default function HomePage() {
       <section className="bg-stone-900 text-white py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <div className="text-xs tracking-[0.4em] text-yellow-300 mb-3 font-bold">SERVICE AREAS</div>
+            <div className="text-xs tracking-widest text-yellow-300 mb-3 font-bold">SERVICE AREAS</div>
             <h2 className="text-3xl md:text-4xl font-black">服務地區・台東縣</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -202,13 +126,10 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-5xl font-black mb-6">需要我們的服務嗎?</h2>
           <p className="text-lg mb-8 opacity-95">免費到場估價,馬上回覆!</p>
           <div className="flex gap-3 justify-center flex-wrap">
-            <a href="tel:0906505690" className="bg-yellow-300 text-stone-900 px-8 py-4 rounded font-black text-lg hover:bg-yellow-200 inline-flex items-center gap-2 shadow-2xl">
+            <a href="tel:0906505690" className="bg-yellow-300 text-stone-900 px-8 py-4 rounded font-black text-lg hover:bg-yellow-200 inline-flex items-center gap-2">
               <Phone size={20} /> 0906-505690
             </a>
-            <button
-              onClick={() => setShowBooking(true)}
-              className="border-2 border-white px-8 py-4 rounded font-black text-lg hover:bg-white hover:text-red-700"
-            >
+            <button onClick={() => setShowBooking(true)} className="border-2 border-white px-8 py-4 rounded font-black text-lg hover:bg-white hover:text-red-700">
               💬 線上預約
             </button>
           </div>
@@ -240,11 +161,11 @@ export default function HomePage() {
                 <form onSubmit={handleSubmit} className="space-y-3">
                   <div>
                     <label className="block text-sm font-bold mb-1">姓名 *</label>
-                    <input required type="text" value={form.customer_name} onChange={(e) => setForm({ ...form, customer_name: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded focus:border-red-700 outline-none" placeholder="陳先生 / 林小姐" />
+                    <input required type="text" value={form.customer_name} onChange={(e) => setForm({ ...form, customer_name: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded outline-none" placeholder="陳先生 / 林小姐" />
                   </div>
                   <div>
                     <label className="block text-sm font-bold mb-1">電話 *</label>
-                    <input required type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded focus:border-red-700 outline-none" placeholder="0912-345-678" />
+                    <input required type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded outline-none" placeholder="0912-345-678" />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
