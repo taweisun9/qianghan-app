@@ -37,7 +37,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-stone-50">
-      {/* Header */}
       <header className="sticky top-0 z-40 bg-white border-b-2 border-stone-900 shadow-sm">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -53,19 +52,10 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Hero with image */}
-      <section className="relative text-white overflow-hidden">
-        <img
-          src="/hero.jpg"
-          alt="強悍割草班"
-          className="absolute inset-0 w-full h-full object-cover"
-          onError={(e) => {
-            const img = e.target as HTMLImageElement;
-            if (img.src.endsWith('hero.jpg')) {
-              img.src = '/hero..jpg';
-            }
-          }}
-        />
+      <section
+        className="relative text-white overflow-hidden bg-cover bg-center"
+        style={{ backgroundImage: "url('/hero..jpg')" }}
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-red-900/85 via-red-800/80 to-red-900/85" />
 
         <div className="max-w-6xl mx-auto px-6 py-20 md:py-32 relative">
@@ -94,7 +84,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services */}
       <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
         <div className="text-center mb-12">
           <div className="text-xs tracking-[0.4em] text-red-700 mb-3 font-bold">SERVICES</div>
@@ -102,18 +91,10 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div className="relative h-40 md:h-48 overflow-hidden bg-stone-200">
-              <img
-                src="/service-grass.jpg"
-                alt="割草清理"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                onError={(e) => {
-                  const img = e.target as HTMLImageElement;
-                  if (img.src.endsWith('service-grass.jpg')) {
-                    img.src = '/service-grass..jpg';
-                  }
-                }}
-              />
+            <div
+              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
+              style={{ backgroundImage: "url('/service-grass..jpg')" }}
+            >
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
               <Sprout size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
             </div>
@@ -124,12 +105,10 @@ export default function HomePage() {
           </div>
 
           <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div className="relative h-40 md:h-48 overflow-hidden bg-stone-200">
-              <img
-                src="/service-land.jpg"
-                alt="土地整地"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-500"
-              />
+            <div
+              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
+              style={{ backgroundImage: "url('/service-land.jpg')" }}
+            >
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
               <Truck size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
             </div>
@@ -140,12 +119,10 @@ export default function HomePage() {
           </div>
 
           <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div className="relative h-40 md:h-48 overflow-hidden bg-stone-200">
-              <img
-                src="/service-tree.jpg"
-                alt="樹木鋸除"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-500"
-              />
+            <div
+              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
+              style={{ backgroundImage: "url('/service-tree.jpg')" }}
+            >
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
               <Trees size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
             </div>
@@ -156,12 +133,10 @@ export default function HomePage() {
           </div>
 
           <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div className="relative h-40 md:h-48 overflow-hidden bg-stone-200">
-              <img
-                src="/service-work.jpg"
-                alt="工程承攬"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-500"
-              />
+            <div
+              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
+              style={{ backgroundImage: "url('/service-work.jpg')" }}
+            >
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
               <Briefcase size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
             </div>
@@ -173,7 +148,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Team & Tools Gallery */}
       <section className="bg-stone-100 py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -181,12 +155,10 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-black">我們的團隊</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="relative h-72 md:h-96 overflow-hidden rounded-xl group cursor-pointer">
-              <img
-                src="/team.jpg"
-                alt="強悍 8 人團隊"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700"
-              />
+            <div
+              className="relative h-72 md:h-96 overflow-hidden rounded-xl bg-cover bg-center"
+              style={{ backgroundImage: "url('/team.jpg')" }}
+            >
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/50 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <div className="text-xs tracking-widest opacity-80 mb-2">8 PERSON CREW</div>
@@ -194,12 +166,10 @@ export default function HomePage() {
                 <div className="text-sm opacity-90">在地經驗豐富,使命必達</div>
               </div>
             </div>
-            <div className="relative h-72 md:h-96 overflow-hidden rounded-xl group cursor-pointer">
-              <img
-                src="/tools.jpg"
-                alt="專業設備"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700"
-              />
+            <div
+              className="relative h-72 md:h-96 overflow-hidden rounded-xl bg-cover bg-center"
+              style={{ backgroundImage: "url('/tools.jpg')" }}
+            >
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/50 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <div className="text-xs tracking-widest opacity-80 mb-2">PROFESSIONAL EQUIPMENT</div>
@@ -211,7 +181,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Areas */}
       <section className="bg-stone-900 text-white py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -228,7 +197,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contact CTA */}
       <section className="bg-red-900 text-white py-16 md:py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-5xl font-black mb-6">需要我們的服務嗎?</h2>
@@ -248,7 +216,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-stone-900 text-white py-10">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="font-black text-2xl mb-2">強悍割草班</div>
@@ -257,7 +224,6 @@ export default function HomePage() {
         </div>
       </footer>
 
-      {/* 預約彈窗 */}
       {showBooking && (
         <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4" onClick={() => setShowBooking(false)}>
           <div className="bg-white rounded-2xl max-w-md w-full p-6 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
@@ -274,65 +240,31 @@ export default function HomePage() {
                 <form onSubmit={handleSubmit} className="space-y-3">
                   <div>
                     <label className="block text-sm font-bold mb-1">姓名 *</label>
-                    <input
-                      required
-                      type="text"
-                      value={form.customer_name}
-                      onChange={(e) => setForm({ ...form, customer_name: e.target.value })}
-                      className="w-full px-3 py-2 border border-stone-300 rounded focus:border-red-700 outline-none"
-                      placeholder="陳先生 / 林小姐"
-                    />
+                    <input required type="text" value={form.customer_name} onChange={(e) => setForm({ ...form, customer_name: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded focus:border-red-700 outline-none" placeholder="陳先生 / 林小姐" />
                   </div>
                   <div>
                     <label className="block text-sm font-bold mb-1">電話 *</label>
-                    <input
-                      required
-                      type="tel"
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="w-full px-3 py-2 border border-stone-300 rounded focus:border-red-700 outline-none"
-                      placeholder="0912-345-678"
-                    />
+                    <input required type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded focus:border-red-700 outline-none" placeholder="0912-345-678" />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="block text-sm font-bold mb-1">地區</label>
-                      <select
-                        value={form.area}
-                        onChange={(e) => setForm({ ...form, area: e.target.value })}
-                        className="w-full px-3 py-2 border border-stone-300 rounded outline-none"
-                      >
+                      <select value={form.area} onChange={(e) => setForm({ ...form, area: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded outline-none">
                         {AREAS.map(a => <option key={a}>{a}</option>)}
                       </select>
                     </div>
                     <div>
                       <label className="block text-sm font-bold mb-1">服務</label>
-                      <select
-                        value={form.service_type}
-                        onChange={(e) => setForm({ ...form, service_type: e.target.value })}
-                        className="w-full px-3 py-2 border border-stone-300 rounded outline-none"
-                      >
-                        <option>割草</option>
-                        <option>整地</option>
-                        <option>鋸樹</option>
-                        <option>工程承攬</option>
+                      <select value={form.service_type} onChange={(e) => setForm({ ...form, service_type: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded outline-none">
+                        <option>割草</option><option>整地</option><option>鋸樹</option><option>工程承攬</option>
                       </select>
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-bold mb-1">需求說明</label>
-                    <textarea
-                      value={form.description}
-                      onChange={(e) => setForm({ ...form, description: e.target.value })}
-                      className="w-full px-3 py-2 border border-stone-300 rounded outline-none h-20"
-                      placeholder="例:果園大概 3 分地需要清理"
-                    />
+                    <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded outline-none h-20" placeholder="例:果園大概 3 分地需要清理" />
                   </div>
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full bg-red-700 text-white py-3 rounded font-black hover:bg-red-800 disabled:opacity-50 flex items-center justify-center gap-2"
-                  >
+                  <button type="submit" disabled={submitting} className="w-full bg-red-700 text-white py-3 rounded font-black hover:bg-red-800 disabled:opacity-50 flex items-center justify-center gap-2">
                     {submitting ? '送出中...' : <><Send size={18} /> 送出預約</>}
                   </button>
                 </form>
@@ -342,7 +274,6 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* 浮動電話按鈕 */}
       <a href="tel:0906505690" className="md:hidden fixed bottom-4 right-4 bg-red-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center z-30">
         <Phone size={24} />
       </a>
