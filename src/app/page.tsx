@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, CheckCircle2, Sprout, Truck, Trees, Briefcase, MapPin, Send } from 'lucide-react';
 import { createBooking } from '@/lib/supabase';
 
 const AREAS = ['台東市', '卑南鄉', '太麻里鄉', '東河鄉', '成功鎮', '關山鎮', '池上鄉', '鹿野鄉'];
@@ -36,236 +35,186 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50">
-      <header className="sticky top-0 z-40 bg-white border-b-2 border-stone-900 shadow-sm">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-red-700 rounded flex items-center justify-center text-white font-black text-xl">悍</div>
+    <div style={{ minHeight: '100vh', backgroundColor: '#fafaf9' }}>
+      <header style={{ position: 'sticky', top: 0, zIndex: 40, backgroundColor: 'white', borderBottom: '2px solid #1c1917', padding: '16px 24px' }}>
+        <div style={{ maxWidth: '1152px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ width: '40px', height: '40px', backgroundColor: '#b91c1c', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 900, fontSize: '20px' }}>悍</div>
             <div>
-              <div className="font-black text-xl tracking-widest">強悍割草班</div>
-              <div className="text-xs text-stone-500 tracking-wider">QIANG HAN | TAITUNG</div>
+              <div style={{ fontWeight: 900, fontSize: '20px', letterSpacing: '0.1em' }}>強悍割草班</div>
+              <div style={{ fontSize: '12px', color: '#78716c' }}>QIANG HAN | TAITUNG</div>
             </div>
           </div>
-          <a href="tel:0906505690" className="bg-red-700 text-white px-4 py-2 rounded font-bold text-sm flex items-center gap-2 hover:bg-red-800">
-            <Phone size={14} /> <span className="hidden sm:inline">0906-505690</span><span className="sm:hidden">電話</span>
-          </a>
+          <a href="tel:0906505690" style={{ backgroundColor: '#b91c1c', color: 'white', padding: '8px 16px', borderRadius: '4px', fontWeight: 700, fontSize: '14px', textDecoration: 'none' }}>📞 0906-505690</a>
         </div>
       </header>
 
-      <section
-        className="relative text-white overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-red-900/85 via-red-800/80 to-red-900/85" />
-
-        <div className="max-w-6xl mx-auto px-6 py-20 md:py-32 relative">
-          <div className="text-xs tracking-[0.4em] mb-6 opacity-80">EST. TAITUNG TAIWAN</div>
-          <h1 className="text-5xl md:text-8xl font-black leading-none mb-6 tracking-tight drop-shadow-2xl">
+      <section style={{ position: 'relative', color: 'white', overflow: 'hidden', backgroundImage: 'linear-gradient(135deg, rgba(127,29,29,0.85), rgba(153,27,27,0.80), rgba(127,29,29,0.85)), url(/hero.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div style={{ maxWidth: '1152px', margin: '0 auto', padding: '80px 24px' }}>
+          <div style={{ fontSize: '12px', letterSpacing: '0.4em', marginBottom: '24px', opacity: 0.8 }}>EST. TAITUNG TAIWAN</div>
+          <h1 style={{ fontSize: '72px', fontWeight: 900, lineHeight: 1, marginBottom: '24px' }}>
             再硬的草<br/>
-            <span className="text-yellow-300">交給強悍</span>
+            <span style={{ color: '#fde047' }}>交給強悍</span>
           </h1>
-          <p className="text-lg md:text-xl mb-8 opacity-95 max-w-2xl drop-shadow-lg">台東在地 8 人專業團隊。割草・整地・鋸樹・工程承攬。</p>
-          <div className="flex gap-3 flex-wrap">
-            <a href="tel:0906505690" className="bg-yellow-300 text-stone-900 px-6 md:px-8 py-4 rounded font-black text-base md:text-lg hover:bg-yellow-200 shadow-2xl">
+          <p style={{ fontSize: '20px', marginBottom: '32px', opacity: 0.95, maxWidth: '672px' }}>台東在地 8 人專業團隊。割草・整地・鋸樹・工程承攬。</p>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+            <a href="tel:0906505690" style={{ backgroundColor: '#fde047', color: '#1c1917', padding: '16px 32px', borderRadius: '4px', fontWeight: 900, fontSize: '18px', textDecoration: 'none' }}>
               📞 立即來電 0906-505690
             </a>
-            <button
-              onClick={() => setShowBooking(true)}
-              className="border-2 border-white px-6 md:px-8 py-4 rounded font-black text-base md:text-lg hover:bg-white hover:text-red-700"
-            >
+            <button onClick={() => setShowBooking(true)} style={{ border: '2px solid white', color: 'white', backgroundColor: 'transparent', padding: '16px 32px', borderRadius: '4px', fontWeight: 900, fontSize: '18px', cursor: 'pointer' }}>
               💬 線上預約 →
             </button>
           </div>
-          <div className="flex gap-6 mt-12 flex-wrap text-sm">
-            <div className="flex items-center gap-2"><CheckCircle2 size={20} className="text-yellow-300" /> 現場免費估價</div>
-            <div className="flex items-center gap-2"><CheckCircle2 size={20} className="text-yellow-300" /> 價格公道透明</div>
-            <div className="flex items-center gap-2"><CheckCircle2 size={20} className="text-yellow-300" /> 做工確實負責</div>
+          <div style={{ display: 'flex', gap: '24px', marginTop: '48px', flexWrap: 'wrap', fontSize: '14px' }}>
+            <div>✓ 現場免費估價</div>
+            <div>✓ 價格公道透明</div>
+            <div>✓ 做工確實負責</div>
           </div>
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <div className="text-center mb-12">
-          <div className="text-xs tracking-[0.4em] text-red-700 mb-3 font-bold">SERVICES</div>
-          <h2 className="text-3xl md:text-4xl font-black">服務項目</h2>
+      <section style={{ maxWidth: '1152px', margin: '0 auto', padding: '64px 24px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <div style={{ fontSize: '12px', letterSpacing: '0.4em', color: '#b91c1c', marginBottom: '12px', fontWeight: 700 }}>SERVICES</div>
+          <h2 style={{ fontSize: '36px', fontWeight: 900 }}>服務項目</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div
-              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
-              style={{ backgroundImage: "url('/service-grass.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <Sprout size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
-            </div>
-            <div className="p-4 md:p-5">
-              <div className="font-black text-lg md:text-xl mb-1">割草清理</div>
-              <div className="text-xs md:text-sm text-stone-600">住家、農地、果園、空地一律承接</div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+          <div style={{ border: '2px solid #1c1917', overflow: 'hidden', backgroundColor: 'white' }}>
+            <div style={{ height: '192px', backgroundImage: 'linear-gradient(to top, rgba(28,25,23,0.6), transparent), url(/service-grass.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+            <div style={{ padding: '20px' }}>
+              <div style={{ fontWeight: 900, fontSize: '20px', marginBottom: '4px' }}>🌿 割草清理</div>
+              <div style={{ fontSize: '14px', color: '#57534e' }}>住家、農地、果園、空地一律承接</div>
             </div>
           </div>
-
-          <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div
-              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
-              style={{ backgroundImage: "url('/service-land.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <Truck size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
-            </div>
-            <div className="p-4 md:p-5">
-              <div className="font-black text-lg md:text-xl mb-1">土地整地</div>
-              <div className="text-xs md:text-sm text-stone-600">雜物清除、地面平整、土地復原</div>
+          <div style={{ border: '2px solid #1c1917', overflow: 'hidden', backgroundColor: 'white' }}>
+            <div style={{ height: '192px', backgroundImage: 'linear-gradient(to top, rgba(28,25,23,0.6), transparent), url(/service-land.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+            <div style={{ padding: '20px' }}>
+              <div style={{ fontWeight: 900, fontSize: '20px', marginBottom: '4px' }}>🚜 土地整地</div>
+              <div style={{ fontSize: '14px', color: '#57534e' }}>雜物清除、地面平整、土地復原</div>
             </div>
           </div>
-
-          <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div
-              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
-              style={{ backgroundImage: "url('/service-tree.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <Trees size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
-            </div>
-            <div className="p-4 md:p-5">
-              <div className="font-black text-lg md:text-xl mb-1">樹木鋸除</div>
-              <div className="text-xs md:text-sm text-stone-600">修枝、伐木、危木處理</div>
+          <div style={{ border: '2px solid #1c1917', overflow: 'hidden', backgroundColor: 'white' }}>
+            <div style={{ height: '192px', backgroundImage: 'linear-gradient(to top, rgba(28,25,23,0.6), transparent), url(/service-tree.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+            <div style={{ padding: '20px' }}>
+              <div style={{ fontWeight: 900, fontSize: '20px', marginBottom: '4px' }}>🌳 樹木鋸除</div>
+              <div style={{ fontSize: '14px', color: '#57534e' }}>修枝、伐木、危木處理</div>
             </div>
           </div>
-
-          <div className="border-2 border-stone-900 overflow-hidden hover:shadow-2xl transition group cursor-pointer bg-white">
-            <div
-              className="relative h-40 md:h-48 overflow-hidden bg-stone-200 bg-cover bg-center"
-              style={{ backgroundImage: "url('/service-work.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent" />
-              <Briefcase size={32} className="absolute top-3 right-3 text-yellow-300 drop-shadow-lg" />
-            </div>
-            <div className="p-4 md:p-5">
-              <div className="font-black text-lg md:text-xl mb-1">工程承攬</div>
-              <div className="text-xs md:text-sm text-stone-600">工地、農場、廠商人力配合</div>
+          <div style={{ border: '2px solid #1c1917', overflow: 'hidden', backgroundColor: 'white' }}>
+            <div style={{ height: '192px', backgroundImage: 'linear-gradient(to top, rgba(28,25,23,0.6), transparent), url(/service-work.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+            <div style={{ padding: '20px' }}>
+              <div style={{ fontWeight: 900, fontSize: '20px', marginBottom: '4px' }}>💼 工程承攬</div>
+              <div style={{ fontSize: '14px', color: '#57534e' }}>工地、農場、廠商人力配合</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-stone-100 py-16 md:py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="text-xs tracking-[0.4em] text-red-700 mb-3 font-bold">OUR TEAM</div>
-            <h2 className="text-3xl md:text-4xl font-black">我們的團隊</h2>
+      <section style={{ backgroundColor: '#f5f5f4', padding: '80px 24px' }}>
+        <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <div style={{ fontSize: '12px', letterSpacing: '0.4em', color: '#b91c1c', marginBottom: '12px', fontWeight: 700 }}>OUR TEAM</div>
+            <h2 style={{ fontSize: '36px', fontWeight: 900 }}>我們的團隊</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div
-              className="relative h-72 md:h-96 overflow-hidden rounded-xl bg-cover bg-center"
-              style={{ backgroundImage: "url('/team.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <div className="text-xs tracking-widest opacity-80 mb-2">8 PERSON CREW</div>
-                <div className="font-black text-2xl md:text-3xl mb-1">強悍 8 人團隊</div>
-                <div className="text-sm opacity-90">在地經驗豐富,使命必達</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+            <div style={{ position: 'relative', height: '384px', overflow: 'hidden', borderRadius: '12px', backgroundImage: 'linear-gradient(to top, rgba(28,25,23,0.9), rgba(28,25,23,0.3), transparent), url(/team.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px', color: 'white' }}>
+                <div style={{ fontSize: '12px', letterSpacing: '0.2em', opacity: 0.8, marginBottom: '8px' }}>8 PERSON CREW</div>
+                <div style={{ fontWeight: 900, fontSize: '30px', marginBottom: '4px' }}>強悍 8 人團隊</div>
+                <div style={{ fontSize: '14px', opacity: 0.9 }}>在地經驗豐富,使命必達</div>
               </div>
             </div>
-            <div
-              className="relative h-72 md:h-96 overflow-hidden rounded-xl bg-cover bg-center"
-              style={{ backgroundImage: "url('/tools.jpg')" }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <div className="text-xs tracking-widest opacity-80 mb-2">PROFESSIONAL EQUIPMENT</div>
-                <div className="font-black text-2xl md:text-3xl mb-1">專業設備</div>
-                <div className="text-sm opacity-90">背負式割草機、鏈鋸、卡車</div>
+            <div style={{ position: 'relative', height: '384px', overflow: 'hidden', borderRadius: '12px', backgroundImage: 'linear-gradient(to top, rgba(28,25,23,0.9), rgba(28,25,23,0.3), transparent), url(/tools.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px', color: 'white' }}>
+                <div style={{ fontSize: '12px', letterSpacing: '0.2em', opacity: 0.8, marginBottom: '8px' }}>PROFESSIONAL EQUIPMENT</div>
+                <div style={{ fontWeight: 900, fontSize: '30px', marginBottom: '4px' }}>專業設備</div>
+                <div style={{ fontSize: '14px', opacity: 0.9 }}>背負式割草機、鏈鋸、卡車</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-stone-900 text-white py-16 md:py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="text-xs tracking-[0.4em] text-yellow-300 mb-3 font-bold">SERVICE AREAS</div>
-            <h2 className="text-3xl md:text-4xl font-black">服務地區・台東縣</h2>
+      <section style={{ backgroundColor: '#1c1917', color: 'white', padding: '80px 24px' }}>
+        <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <div style={{ fontSize: '12px', letterSpacing: '0.4em', color: '#fde047', marginBottom: '12px', fontWeight: 700 }}>SERVICE AREAS</div>
+            <h2 style={{ fontSize: '36px', fontWeight: 900 }}>服務地區・台東縣</h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px' }}>
             {AREAS.map((a) => (
-              <div key={a} className="border border-stone-700 p-4 text-center hover:border-yellow-300 hover:text-yellow-300 cursor-pointer flex items-center justify-center gap-2">
-                <MapPin size={16} /> {a}
-              </div>
+              <div key={a} style={{ border: '1px solid #44403c', padding: '16px', textAlign: 'center', cursor: 'pointer' }}>📍 {a}</div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-red-900 text-white py-16 md:py-20">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-black mb-6">需要我們的服務嗎?</h2>
-          <p className="text-lg mb-8 opacity-95">免費到場估價,馬上回覆!</p>
-          <div className="flex gap-3 justify-center flex-wrap">
-            <a href="tel:0906505690" className="bg-yellow-300 text-stone-900 px-8 py-4 rounded font-black text-lg hover:bg-yellow-200 inline-flex items-center gap-2 shadow-2xl">
-              <Phone size={20} /> 0906-505690
+      <section style={{ backgroundColor: '#7f1d1d', color: 'white', padding: '80px 24px', textAlign: 'center' }}>
+        <div style={{ maxWidth: '768px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '48px', fontWeight: 900, marginBottom: '24px' }}>需要我們的服務嗎?</h2>
+          <p style={{ fontSize: '18px', marginBottom: '32px', opacity: 0.95 }}>免費到場估價,馬上回覆!</p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="tel:0906505690" style={{ backgroundColor: '#fde047', color: '#1c1917', padding: '16px 32px', borderRadius: '4px', fontWeight: 900, fontSize: '18px', textDecoration: 'none' }}>
+              📞 0906-505690
             </a>
-            <button
-              onClick={() => setShowBooking(true)}
-              className="border-2 border-white px-8 py-4 rounded font-black text-lg hover:bg-white hover:text-red-700"
-            >
+            <button onClick={() => setShowBooking(true)} style={{ border: '2px solid white', color: 'white', backgroundColor: 'transparent', padding: '16px 32px', borderRadius: '4px', fontWeight: 900, fontSize: '18px', cursor: 'pointer' }}>
               💬 線上預約
             </button>
           </div>
-          <div className="text-sm mt-8 opacity-80">劉加明 ・ 週一至週六 07:00 - 18:00</div>
+          <div style={{ fontSize: '14px', marginTop: '32px', opacity: 0.8 }}>劉加明 ・ 週一至週六 07:00 - 18:00</div>
         </div>
       </section>
 
-      <footer className="bg-stone-900 text-white py-10">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <div className="font-black text-2xl mb-2">強悍割草班</div>
-          <div className="text-sm opacity-60">台東在地 8 人專業團隊</div>
-          <div className="text-xs opacity-40 mt-4">© 2026 強悍割草班. All rights reserved.</div>
+      <footer style={{ backgroundColor: '#1c1917', color: 'white', padding: '40px 24px', textAlign: 'center' }}>
+        <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
+          <div style={{ fontWeight: 900, fontSize: '24px', marginBottom: '8px' }}>強悍割草班</div>
+          <div style={{ fontSize: '14px', opacity: 0.6 }}>台東在地 8 人專業團隊</div>
+          <div style={{ fontSize: '12px', opacity: 0.4, marginTop: '16px' }}>© 2026 強悍割草班. All rights reserved.</div>
         </div>
       </footer>
 
       {showBooking && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4" onClick={() => setShowBooking(false)}>
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }} onClick={() => setShowBooking(false)}>
+          <div style={{ backgroundColor: 'white', borderRadius: '16px', maxWidth: '448px', width: '100%', padding: '24px', maxHeight: '90vh', overflowY: 'auto' }} onClick={(e) => e.stopPropagation()}>
             {success ? (
-              <div className="text-center py-8">
-                <CheckCircle2 size={64} className="mx-auto text-green-600 mb-4" />
-                <h3 className="text-2xl font-black mb-2">預約成功!</h3>
-                <p className="text-stone-600">我們會盡快回電給您 🙏</p>
+              <div style={{ textAlign: 'center', padding: '32px 0' }}>
+                <div style={{ fontSize: '64px', marginBottom: '16px' }}>✅</div>
+                <h3 style={{ fontSize: '24px', fontWeight: 900, marginBottom: '8px' }}>預約成功!</h3>
+                <p style={{ color: '#57534e' }}>我們會盡快回電給您 🙏</p>
               </div>
             ) : (
               <>
-                <h3 className="text-2xl font-black mb-1">線上預約</h3>
-                <p className="text-sm text-stone-500 mb-5">填寫資料,我們會盡快回電</p>
-                <form onSubmit={handleSubmit} className="space-y-3">
-                  <div>
-                    <label className="block text-sm font-bold mb-1">姓名 *</label>
-                    <input required type="text" value={form.customer_name} onChange={(e) => setForm({ ...form, customer_name: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded outline-none" placeholder="陳先生 / 林小姐" />
+                <h3 style={{ fontSize: '24px', fontWeight: 900, marginBottom: '4px' }}>線上預約</h3>
+                <p style={{ fontSize: '14px', color: '#78716c', marginBottom: '20px' }}>填寫資料,我們會盡快回電</p>
+                <form onSubmit={handleSubmit}>
+                  <div style={{ marginBottom: '12px' }}>
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 700, marginBottom: '4px' }}>姓名 *</label>
+                    <input required type="text" value={form.customer_name} onChange={(e) => setForm({ ...form, customer_name: e.target.value })} style={{ width: '100%', padding: '8px 12px', border: '1px solid #d6d3d1', borderRadius: '4px', outline: 'none', boxSizing: 'border-box' }} placeholder="陳先生 / 林小姐" />
                   </div>
-                  <div>
-                    <label className="block text-sm font-bold mb-1">電話 *</label>
-                    <input required type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded outline-none" placeholder="0912-345-678" />
+                  <div style={{ marginBottom: '12px' }}>
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 700, marginBottom: '4px' }}>電話 *</label>
+                    <input required type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} style={{ width: '100%', padding: '8px 12px', border: '1px solid #d6d3d1', borderRadius: '4px', outline: 'none', boxSizing: 'border-box' }} placeholder="0912-345-678" />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
                     <div>
-                      <label className="block text-sm font-bold mb-1">地區</label>
-                      <select value={form.area} onChange={(e) => setForm({ ...form, area: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded outline-none">
+                      <label style={{ display: 'block', fontSize: '14px', fontWeight: 700, marginBottom: '4px' }}>地區</label>
+                      <select value={form.area} onChange={(e) => setForm({ ...form, area: e.target.value })} style={{ width: '100%', padding: '8px 12px', border: '1px solid #d6d3d1', borderRadius: '4px', outline: 'none', boxSizing: 'border-box' }}>
                         {AREAS.map(a => <option key={a}>{a}</option>)}
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-bold mb-1">服務</label>
-                      <select value={form.service_type} onChange={(e) => setForm({ ...form, service_type: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded outline-none">
+                      <label style={{ display: 'block', fontSize: '14px', fontWeight: 700, marginBottom: '4px' }}>服務</label>
+                      <select value={form.service_type} onChange={(e) => setForm({ ...form, service_type: e.target.value })} style={{ width: '100%', padding: '8px 12px', border: '1px solid #d6d3d1', borderRadius: '4px', outline: 'none', boxSizing: 'border-box' }}>
                         <option>割草</option><option>整地</option><option>鋸樹</option><option>工程承攬</option>
                       </select>
                     </div>
                   </div>
-                  <div>
-                    <label className="block text-sm font-bold mb-1">需求說明</label>
-                    <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full px-3 py-2 border border-stone-300 rounded outline-none h-20" placeholder="例:果園大概 3 分地需要清理" />
+                  <div style={{ marginBottom: '12px' }}>
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 700, marginBottom: '4px' }}>需求說明</label>
+                    <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} style={{ width: '100%', padding: '8px 12px', border: '1px solid #d6d3d1', borderRadius: '4px', outline: 'none', height: '80px', boxSizing: 'border-box' }} placeholder="例:果園大概 3 分地需要清理" />
                   </div>
-                  <button type="submit" disabled={submitting} className="w-full bg-red-700 text-white py-3 rounded font-black hover:bg-red-800 disabled:opacity-50 flex items-center justify-center gap-2">
-                    {submitting ? '送出中...' : <><Send size={18} /> 送出預約</>}
+                  <button type="submit" disabled={submitting} style={{ width: '100%', backgroundColor: '#b91c1c', color: 'white', padding: '12px', borderRadius: '4px', fontWeight: 900, border: 'none', cursor: 'pointer', opacity: submitting ? 0.5 : 1 }}>
+                    {submitting ? '送出中...' : '✉ 送出預約'}
                   </button>
                 </form>
               </>
@@ -273,10 +222,6 @@ export default function HomePage() {
           </div>
         </div>
       )}
-
-      <a href="tel:0906505690" className="md:hidden fixed bottom-4 right-4 bg-red-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center z-30">
-        <Phone size={24} />
-      </a>
     </div>
   );
 }
