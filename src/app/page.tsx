@@ -49,7 +49,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section style={{ position: 'relative', color: 'white', overflow: 'hidden', backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%), url(/hero.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section style={{ position: 'relative', color: 'white', overflow: 'hidden', backgroundImage: <section style={{ position: 'relative', color: 'white', overflow: 'hidden', backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%), url(/hero.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
           <div style={{ fontSize: '12px', letterSpacing: '0.4em', marginBottom: '24px', opacity: 0.8 }}>EST. TAITUNG TAIWAN</div>
           <h1 style={{ fontSize: '72px', fontWeight: 900, lineHeight: 1, marginBottom: '24px' }}>
             再硬的草<br/>
