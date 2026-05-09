@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { TrendingUp, Users, FileSpreadsheet, Briefcase, Calendar, FolderOpen, UserCheck, DollarSign, Truck, Menu, X, LogOut } from 'lucide-react';
 
 // ⚠️ 改密碼就改這裡
-const ADMIN_PASSWORD = 'qianghan2026';
+const ADMIN_PASSWORD = '6688';
 
 const NAV_GROUPS = [
   {
